@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "particleid-proposal-pytorch"
+version = "2.0.0"
+description = "Auditable numerical implementation of BL4S proposal equations with PyTorch and data comparison"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26,<3", "scipy>=1.11,<2", "pandas>=2,<4", "matplotlib>=3.8,<4", "torch>=2.6,<3", "scikit-learn>=1.4,<2"]
+
+[project.optional-dependencies]
+ui = ["streamlit>=1.67,<2"]
+dev = ["pytest>=8,<10", "mypy>=1.10"]
+
+[project.scripts]
+proposal-pid = "proposal_pid.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.mypy]
+ignore_missing_imports = true
+check_untyped_defs = true
+follow_imports = "skip"
